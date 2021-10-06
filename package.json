@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "Node js twitter bot to send auto direct message",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "start": "node --experimental-modules index.js"
+    "start": "node index.js"
   },
   "author": "Youssouf El AZIZI and Chiamaka",
   "license": "ISC",
