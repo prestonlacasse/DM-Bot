@@ -47,4 +47,3 @@ const GenerateMessage = (name) => {
   // My message   return `Hi ${name} sorry for the cold introduction. I am just letting you know that Javelin has come to San Francisco. Javelin is a mobile app that connects sports players with other players and leagues in their community. If this sounds like something that interest you, you can download the Javelin app for FREE! \n Have a great ${dayName}! 😊😊`;
 };
 
-export default AutoDM;
