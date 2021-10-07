@@ -1,8 +1,10 @@
-const T = require("./Twit.js");
-const my_user_name = require("../config.js").userName;
+import { T } from "./Twit.js";
+import { config } from "../config.js";
+
+const my_user_name = config.userName;
 const timeout = 1000 * 60 * 5; // timeout to send the message 5 min
 
-const AutoDM = () => {
+export const AutoDM = () => {
   const stream = T.stream("user");
   console.log("Start Sending Auto Direct Message");
   stream.on("follow", SendMessage);
@@ -45,4 +47,4 @@ const GenerateMessage = (name) => {
   // My message   return `Hi ${name} sorry for the cold introduction. I am just letting you know that Javelin has come to San Francisco. Javelin is a mobile app that connects sports players with other players and leagues in their community. If this sounds like something that interest you, you can download the Javelin app for FREE! \n Have a great ${dayName}! 😊😊`;
 };
 
-module.exports = AutoDM;
+export default AutoDM;
