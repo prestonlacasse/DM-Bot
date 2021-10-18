@@ -1,13 +1,47 @@
 import { T } from "./Twit.js";
 import { config } from "../config.js";
+// import readline from 'readline';
 
 const my_user_name = config.userName;
 const timeout = 1000 * 60 * 5; // timeout to send the message 5 min
 
 export const AutoDM = () => {
-  const stream = T.stream("user");
-  console.log("Start Sending Auto Direct Message");
-  stream.on("follow", SendMessage);
+  // const stream = T.stream("user");
+  // console.log("Start Sending Auto Direct Message");
+  // stream.on("follow", SendMessage);
+  
+  // const userInput = readline.createInterface({
+  //   input: process.stdin,
+  //   output: process.stdout
+  // })
+
+  const userToGet = 'kawhileonard'
+  let nextCursor = null
+  let nextPageExists = true
+  let results = []
+  console.log(`GET followers/ids of: `, userToGet)
+
+  let params = {
+    screen_name: userToGet,
+    cursor: nextCursor
+  }
+  while (nextPageExists) {
+    T.get('followers/ids', params, (error,data,response) => {
+      if (data) {
+        console.log(`user get: `, JSON.parse(data))
+        results.push(...data.ids)
+        if (data.next_cursor_str != '0') {
+          nextCursor = next_cursor_str
+        } 
+        else {
+          nextPageExists = false
+        }
+      }
+      if (error) {
+        console.log(`ERROR: `, error)
+      }
+    })
+  }
 };
 
 const SendMessage = (user) => {
