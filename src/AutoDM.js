@@ -21,15 +21,11 @@ export const AutoDM = () => {
   let results = []
   console.log(`GET followers/ids of: `, userToGet)
 
-  let params = {
-    screen_name: userToGet,
-    cursor: nextCursor
-  }
   while (nextPageExists) {
-    T.get('followers/ids', params, (error,data,response) => {
+    T.get('followers/ids', { screen_name: userToGet, cursor: nextCursor}, (error,data,response) => {
       if (data) {
         console.log(`user get: `, JSON.parse(data))
-        results.push(...data.ids)
+        // results.push(...data.ids)
         if (data.next_cursor_str != '0') {
           nextCursor = next_cursor_str
         } 
