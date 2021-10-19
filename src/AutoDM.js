@@ -24,8 +24,9 @@ export const AutoDM = () => {
   while (nextPageExists) {
     T.get('followers/ids', { screen_name: userToGet, cursor: nextCursor}, (error,data,response) => {
       if (data) {
-        console.log(`user get: `, JSON.parse(data))
-        // results.push(...data.ids)
+        console.log(`Fetching...`)
+        const parsedData = JSON.parse(data)
+        results.push(...parsedData.ids)
         if (data.next_cursor_str != '0') {
           nextCursor = next_cursor_str
         } 
@@ -38,6 +39,7 @@ export const AutoDM = () => {
       }
     })
   }
+  console.log(`End Result: `, results)
 };
 
 const SendMessage = (user) => {
